@@ -55,6 +55,18 @@ jobs:
       - name: Package JAR
         run: mvn package -DskipTests  # tess already carried out in prev. step
 
+      #- name: Docker Login to JFrog
+      #  run: docker login trialsiq0nr.jfrog.io \
+      #    -u "${{ vars.JFROG_USERNAME }}" \
+      #    -p "${{ secrets.XRAY }}"
+
+      - name: Log in to JFrog Docker Registry
+        uses: docker/login-action@v3
+        with:
+          registry: trialsiq0nr.jfrog.io
+          username: ${{ vars.JFROG_USERNAME }}
+          password: ${{ secrets.XRAY }}
+
 
       - name: Build Docker Image
         run: docker build -t trialsiq0nr.jfrog.io/local-docker/petclinic:${{ github.sha }} .
