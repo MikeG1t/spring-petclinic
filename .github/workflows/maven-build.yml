@@ -77,7 +77,7 @@ jobs:
 
       - name: Xray Scan and SBOM (Bonus Gate)
         run: |
-          jf scan local-docker/petclinic:${{ github.sha }} --format=json > xray-scan.json  # Exports JSON (bonus deliverable)
+          jf docker scan local-docker/petclinic:${{ github.sha }} --format=json > xray-scan.json  # Exports JSON (bonus deliverable)
           # Quality Gate: Fail if high vulns (configured in JFrog UI policy)
 
       - name: Simulate Deploy (e.g., to Minikube/K8s)
