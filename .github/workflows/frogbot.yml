@@ -1,4 +1,4 @@
-name: "Frogbot Security Scan"
+name: "Frogbot Security Scan" 
 
 on:
   pull_request_target: 
