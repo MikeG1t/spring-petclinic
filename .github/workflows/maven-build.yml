@@ -57,11 +57,11 @@ jobs:
 
 
       - name: Build Docker Image
-        run: docker build -t ${{ vars.JFROG_URL }}/local-docker/petclinic:${{ github.sha }} .
+        run: docker build -t trialsiq0nr.jfrog.io/local-docker/petclinic:${{ github.sha }} .
 
       - name: Push to Artifactory (Triggers Xray Scan)
         run: |
-          jf docker push ${{ vars.JFROG_URL }}/local-docker/petclinic:${{ github.sha }} --build-name=petclinic --build-number=${{ github.run_number }}
+          jf docker push trialsiq0nr.jfrog.io/local-docker/petclinic:${{ github.sha }} --build-name=petclinic --build-number=${{ github.run_number }}
 
       - name: Xray Scan and SBOM (Bonus Gate)
         run: |
