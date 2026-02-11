@@ -33,6 +33,20 @@
     <spring-format.version>0.0.47</spring-format.version>
   </properties>
 
+  <repositories>
+    <repository>
+      <id>jfrog-virtual</id>
+      <name>JFrog Virtual Maven Repo</name>
+      <url>https://trialsiq0nr.jfrog.io/artifactory/maven-virt-libs-release</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
