@@ -40,7 +40,7 @@ jobs:
         uses: jfrog/frogbot@v2
         env:
           JF_URL: ${{ vars.JFROG_URL }}
-          JF_ACCESS_TOKEN: ${{ secrets.JFROG_ACCESS }}
+          JF_ACCESS_TOKEN: ${{ secrets.XRAY }}
           JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           JFROG_CLI_LOG_LEVEL: DEBUG
 
