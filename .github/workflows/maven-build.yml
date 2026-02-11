@@ -40,12 +40,18 @@ jobs:
           JF_ACCESS_TOKEN: ${{ secrets.JFROG_ACCESS }}
           JF_ARTIFACTORY_URL: ${{ vars.JFROG_URL }}
           JF_XRAY_URL: ${{ vars.JFROG_URL }}
-          GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        uses: jfrog/frogbot@v2.10.0
-        with:
-          url: ${{ vars.JFROG_URL }}
-          access-token: ${{ secrets.JFROG_ACCESS }}
-          git-token: ${{ secrets.GITHUB_TOKEN }}  # For PR comments
+          JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+        #  JF_URL: ${{ vars.JFROG_URL }}
+        #  JF_ACCESS_TOKEN: ${{ secrets.JFROG_ACCESS }}
+        #  JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        #  JF_GIT_BASE_BRANCH: ${{ matrix.branch }}    # For repository scan action
+        
+        uses: jfrog/frogbot@v2
+        #with:
+        #  url: ${{ vars.JFROG_URL }}
+        #  access-token: ${{ secrets.JFROG_ACCESS }}
+        #  git-token: ${{ secrets.GITHUB_TOKEN }}  # For PR comments
 
       - name: Secure Maven Resolution (From Artifactory)
         run: |
