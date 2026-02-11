@@ -65,7 +65,7 @@ jobs:
         with:
           registry: trialsiq0nr.jfrog.io
           username: ${{ vars.JFROG_USERNAME }}
-          password: ${{ secrets.XRAY }}
+          password: ${{ secrets.JFROG_ACCESS }}
 
 
       - name: Build Docker Image
