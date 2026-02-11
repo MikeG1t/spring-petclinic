@@ -35,6 +35,12 @@ jobs:
           JF_ACCESS_TOKEN: ${{ secrets.JFROG_ACCESS }}
 
       - name: Shift-Left Scan with Frogbot (Dependencies)
+        env:
+          JF_URL: ${{ vars.JFROG_URL }}
+          JF_ACCESS_TOKEN: ${{ secrets.JFROG_ACCESS_TOKEN }}
+          JF_ARTIFACTORY_URL: ${{ vars.JFROG_URL }}
+          JF_XRAY_URL: ${{ vars.JFROG_URL }}
+          GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         uses: jfrog/frogbot@v2.10.0
         with:
           url: ${{ vars.JFROG_URL }}
