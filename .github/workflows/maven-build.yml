@@ -6,8 +6,8 @@ name: Java CI with Maven
 on:
   push:
     branches: [ main ]
- # pull_request:
- #   branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
@@ -35,7 +35,6 @@ jobs:
           JF_ACCESS_TOKEN: ${{ secrets.XRAY }}
 
       - name: Shift-Left Scan with Frogbot (Dependencies)
-        #  JF_GIT_BASE_BRANCH: ${{ matrix.branch }}    # For repository scan action
         
         uses: jfrog/frogbot@v2
         env:
@@ -72,16 +71,15 @@ jobs:
         run: docker build -t trialsiq0nr.jfrog.io/local-docker/petclinic:${{ github.sha }} .
 
       - name: Push to Artifactory (Triggers Xray Scan)
-        run: |
-          jf docker push trialsiq0nr.jfrog.io/local-docker/petclinic:${{ github.sha }} --build-name=petclinic --build-number=${{ github.run_number }}
+        run: jf docker push trialsiq0nr.jfrog.io/local-docker/petclinic:${{ github.sha }} --build-name=petclinic --build-number=${{ github.run_number }}
 
       - name: Xray Scan and SBOM (Bonus Gate)
-        run: |
-          jf docker scan trialsiq0nr.jfrog.io/local-docker/petclinic:${{ github.sha }} --format=json > xray-scan.json  # Exports JSON (bonus deliverable)
+        run: jf docker scan trialsiq0nr.jfrog.io/local-docker/petclinic:${{ github.sha }} --format=json > xray-scan.json  # Exports JSON (bonus deliverable)
           # Quality Gate: Fail if high vulns (configured in JFrog UI policy)
 
       - name: Simulate Deploy (e.g., to Minikube/K8s)
         run: |
-          # Assuming local Minikube: kubectl apply -f deploy.yaml
+          # Assuming local Minikube: 
+          kubectl apply -f deploy.yaml
           echo "Deploy command: kubectl create deployment petclinic --image=${{ vars.JFROG_URL }}/local-docker/petclinic:${{ github.sha }}"
         
