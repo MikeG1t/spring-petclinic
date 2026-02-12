@@ -75,7 +75,13 @@ jobs:
 
       - name: Xray Scan and SBOM (Bonus Gate)
         run: jf docker scan trialsiq0nr.jfrog.io/local-docker/petclinic:${{ github.sha }} --format=json > xray-scan.json  # Exports JSON (bonus deliverable)
-          # Quality Gate: Fail if high vulns (configured in JFrog UI policy)
+
+      - name: Upload Xray SBOM JSON (Bonus)
+        uses: actions/upload-artifact@v4
+        with:
+          name: xray-sbom
+          path: xray-scan.json
+          if-no-files-found: warn
 
       - name: Simulate Deploy
         run: |
