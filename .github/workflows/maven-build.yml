@@ -77,9 +77,7 @@ jobs:
         run: jf docker scan trialsiq0nr.jfrog.io/local-docker/petclinic:${{ github.sha }} --format=json > xray-scan.json  # Exports JSON (bonus deliverable)
           # Quality Gate: Fail if high vulns (configured in JFrog UI policy)
 
-      - name: Simulate Deploy (e.g., to Minikube/K8s)
+      - name: Simulate Deploy
         run: |
-          # Assuming local Minikube: 
-          kubectl apply -f deploy.yaml
           echo "Deploy command: kubectl create deployment petclinic --image=${{ vars.JFROG_URL }}/local-docker/petclinic:${{ github.sha }}"
         
