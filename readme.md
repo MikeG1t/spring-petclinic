@@ -12,7 +12,7 @@ The pipeline achieves:
 - Shift-left scanning (Frogbot)
 - Artifact build & push to Artifactory
 - Automatic Xray security scan + quality gate enforcement
-- SBOM export (bonus)
+- Scan export. This was also carried out via the UI, (bonus)
 - Traceability and auditability of the software supply chain
 
 ## Pipeline Overview
@@ -23,10 +23,10 @@ Triggered on **push** to `main` or **pull requests** to `main`.
 2. **Setup JDK 17** + Maven cache
 3. **Build & verify** (compile, test, package JAR)
 4. **Frogbot** shift-left dependency scan
-5. **Secure Maven resolution** — deps pulled from JFrog virtual repo
+5. **Secure Maven resolution** — deps pulled from JFrog virtual repo (not needed, as pom.xml was changed to always use Artifactory for deps. Just left it for completeness)
 6. **Build Docker image**
 7. **Push to Artifactory** (triggers automatic Xray scan + quality gate)
-8. **Explicit Xray scan** + SBOM export (`xray-scan.json`)
+8. **Explicit Xray scan** + JSON export (`xray-scan.json`)
 9. **Simulate deploy** (echo kubectl command)
 
 **Quality gates (bonus)**: Xray policy blocks high/critical vulnerabilities on push (set in JFrog UI → Policies/Watches on `local-docker` repo).
