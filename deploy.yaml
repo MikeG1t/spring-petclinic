@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: petclinic
-        image: trialsiq0nr.jfrog.io/local-docker/petclinic:1662337b758abaffb51d42321c1803c657479dbd/
+        image: trialsiq0nr.jfrog.io/local-docker/petclinic:1662337b758abaffb51d42321c1803c657479dbd
         ports:
         - containerPort: 8080
         resources:
@@ -27,6 +27,7 @@ spec:
           requests:
             cpu: "250m"
             memory: "256Mi"
+        imagePullPolicy: IfNotPresent
 ---
 apiVersion: v1
 kind: Service
