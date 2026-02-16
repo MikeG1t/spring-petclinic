@@ -1,7 +1,6 @@
 # JFrog Home Assignment - Secure DevSecOps Pipeline
 
-**Candidate:** Michael Salami  
-**JFrog Contact:** Tal Etinger (Field CTO, EMEA)  
+**Candidate:** Michael Salami 
 
 ## Overview
 
@@ -31,14 +30,47 @@ Triggered on **push** to `main` or **pull requests** to `main`.
 
 **Quality gates (bonus)**: Xray policy blocks high/critical vulnerabilities on push (set in JFrog UI → Policies/Watches on `local-docker` repo).
 
-## How to Run / Test Locally
 
-### Prerequisites
-- Docker Desktop
-- JFrog CLI (optional for local test: `curl -fL https://getcli.jfrog.io | sh`)
-
-### Steps
+### Steps to run
 1. Clone the repo:
    ```bash
    git clone https://github.com/MikeG1t/spring-petclinic.git
    cd spring-petclinic
+
+  
+**Docker:**
+
+# 1. Load the .tar file you in the zip sent over
+docker load < petclinic.tar
+
+# 2. Run the container (maps port 8080 on your Mac to 8080 in container)
+docker run -d -p 8080:8080 --name petclinic trialsiq0nr.jfrog.io/local-docker/petclinic:16622337b758abafffb51d42321c1803c657479dbdb
+
+# 3. Check it's running
+docker ps
+
+# 4. Open in browser
+open http://localhost:8080
+
+**Kubernetes**
+
+# 1. Apply the deployment + service YAML you created
+kubectl apply -f deploy.yaml
+
+# 2. Verify resources
+kubectl get deployments
+kubectl get pods
+kubectl get svc
+
+# 3. Wait for pod to be Running (check status)
+kubectl get pods -w   # press Ctrl+C when Ready
+
+# 4. Access the app locally (port-forward the service)
+kubectl port-forward svc/petclinic-service 8080:80
+
+# 5. Open in browser
+open http://localhost:8080
+
+# 6. When done, delete
+kubectl delete -f deploy.yaml
+
