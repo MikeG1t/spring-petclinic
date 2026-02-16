@@ -28,7 +28,7 @@ Triggered on **push** to `main` or **pull requests** to `main`.
 8. **Explicit Xray scan** + JSON export (`xray-scan.json`)
 9. **Simulate deploy** (echo kubectl command)
 
-**Quality gates (bonus)**: Xray policy blocks high/critical vulnerabilities on push (set in JFrog UI → Policies/Watches on `local-docker` repo).
+**Quality gates (bonus)**: Xray policy blocks high/critical vulnerabilities on push (set in JFrog UI → Policies/Watches on `local-docker` repo). I've set
 
 
 ### Steps to run
@@ -43,7 +43,7 @@ Triggered on **push** to `main` or **pull requests** to `main`.
  1. **Load the .tar file you in the zip sent over**
     docker load < petclinic.tar
 
-4. **Run the container (maps port 8080 on your Mac to 8080 in container)**
+4. **Run the container (maps port 8080, and on your system to 8080 in the container)**
    docker run -d -p 8080:8080 --name petclinic trialsiq0nr.jfrog.io/local-docker/petclinic:16622337b758abafffb51d42321c1803c657479dbdb
 
 3. **Check it's running**
@@ -54,7 +54,7 @@ Triggered on **push** to `main` or **pull requests** to `main`.
 
 **Kubernetes**
 
-1. **Apply the deployment + service YAML you created**
+1. **Apply the deployment + service YAML you'd have created by running the below**
    kubectl apply -f deploy.yaml
 
 2. **Verify resources**
