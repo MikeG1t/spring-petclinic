@@ -40,37 +40,37 @@ Triggered on **push** to `main` or **pull requests** to `main`.
   
 **Docker:**
 
-** 1. Load the .tar file you in the zip sent over
-docker load < petclinic.tar
+ 1. **Load the .tar file you in the zip sent over**
+    docker load < petclinic.tar
 
-** 2. Run the container (maps port 8080 on your Mac to 8080 in container)
-docker run -d -p 8080:8080 --name petclinic trialsiq0nr.jfrog.io/local-docker/petclinic:16622337b758abafffb51d42321c1803c657479dbdb
+4. **Run the container (maps port 8080 on your Mac to 8080 in container)**
+   docker run -d -p 8080:8080 --name petclinic trialsiq0nr.jfrog.io/local-docker/petclinic:16622337b758abafffb51d42321c1803c657479dbdb
 
-** 3. Check it's running
-docker ps
+3. **Check it's running**
+   docker ps
 
-** 4. Open in browser
-open http://localhost:8080
+4. **Open in browser**
+   open http://localhost:8080
 
 **Kubernetes**
 
-** 1. Apply the deployment + service YAML you created
-kubectl apply -f deploy.yaml
+1. **Apply the deployment + service YAML you created**
+   kubectl apply -f deploy.yaml
 
-** 2. Verify resources
-kubectl get deployments
-kubectl get pods
-kubectl get svc
+2. **Verify resources**
+   kubectl get deployments
+   kubectl get pods
+   kubectl get svc
 
-** 3. Wait for pod to be Running (check status)
-kubectl get pods -w   # press Ctrl+C when Ready
+3. **Wait for pod to be Running (check status)**
+   kubectl get pods -w   # press Ctrl+C when Ready
 
-** 4. Access the app locally (port-forward the service)
-kubectl port-forward svc/petclinic-service 8080:80
+4. **Access the app locally (port-forward the service)**
+   kubectl port-forward svc/petclinic-service 8080:80
 
-** 5. Open in browser
-open http://localhost:8080
+5. **Open in browser**
+   open http://localhost:8080
 
-** 6. When done, delete
-kubectl delete -f deploy.yaml
+6. **When done, delete**
+   kubectl delete -f deploy.yaml
 
